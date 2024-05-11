@@ -1,0 +1,138 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+* a {
+  text-decoration: none;
+}
+
+body {
+  background-image: url(/images/food-2.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.container {
+  background: rgb(146, 145, 145);
+  max-width: 90rem;
+  min-height: 70vh;
+  margin: 4vw auto;
+  border-radius: 15px;
+  box-shadow: 0 0 50px rgba(104, 67, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 1000px) {
+  .container {
+    margin: auto;
+    min-height: 100vh;
+    border-radius: unset;
+  }
+}
+.container header {
+  display: grid;
+  grid-template-areas: "logo right right";
+  padding: 40px;
+  background-color: rgba(190, 190, 145, 0.5);
+}
+@media (max-width: 700px) {
+  .container header {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.container header .logo {
+  grid-area: logo;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 150px;
+}
+.container header .logo img {
+  height: 100px;
+}
+.container header .logo a {
+  text-decoration: none;
+}
+.container header .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  grid-area: right;
+}
+.container header .right .search_form form {
+  background-color: #fff;
+  display: flex;
+  border-radius: 40px;
+  transition: 0.3s all;
+}
+.container header .right .search_form form:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+.container header .right .search_form form input {
+  border: none;
+  outline: none;
+  width: 270px;
+  text-indent: 8px;
+  border-radius: 40px;
+}
+.container header .right .search_form form input::-moz-placeholder {
+  color: #9d7101;
+}
+.container header .right .search_form form input::placeholder {
+  color: #9d7101;
+}
+@media (max-width: 550px) {
+  .container header .right .search_form form input {
+    width: 150px;
+  }
+}
+@media (max-width: 380px) {
+  .container header .right .search_form form input {
+    width: 75px;
+  }
+}
+.container header .right .search_form form button {
+  background-color: #fab604;
+  padding: 10px 30px;
+  border-radius: 40px;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.container header .right .search_form form button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.27);
+}
+.container header .right .likes {
+  font-size: 25px;
+  background: #fab604;
+  padding: 7px;
+  border-radius: 8px;
+  position: relative;
+}
+.container header .right .likes:hover > .list {
+  visibility: visible;
+}
+.container header .right .likes .list {
+  position: absolute;
+  top: 50px;
+  right: -170px;
+  margin-right: 150px;
+  background-image: linear-gradient(90deg, rgba(239, 159, 73, 0.5607843137) 0%, #c27100 100%);
+  visibility: hidden;
+  padding: 10px;
+}
+.container header .right .likes .list a img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}/*# sourceMappingURL=style.css.map */
