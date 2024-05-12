@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
 @mixin ipad{
     @media (max-width:700px){
         @content;
@@ -60,9 +63,11 @@ body {
         grid-template-areas: "logo right right";
         padding: 40px;
         background-color: rgb(190, 190 , 145, 0.5);
+        border-radius: 15px;
         @include ipad(){
             display: flex;
             flex-direction: column;
+            border-radius: unset;
         }
        
         .logo{
@@ -71,11 +76,26 @@ body {
             align-items: center;
             cursor: pointer;
             margin-left: 150px;
+            transition: all 0.3s;
+            &:hover{
+                transform: translateY(-2px);
+                scale: 1.04;
+            }
+            @include ipad(){
+                margin: 0 auto;
+            }
+            @include pc-middle(){
+                margin: 0 auto;
+            }
             img{
                 height: 100px;
             }
             a{
                 text-decoration: none;
+                font-family: "Dancing Script", cursive;
+                color: #fff;
+                font-size: large;
+                font-weight: bold;
             }
         }
         .right{
@@ -84,6 +104,16 @@ body {
             align-items: center;
             gap: 40px;
             grid-area: right;
+            margin-right: 150px;
+            @include ipad(){
+                margin: 0 auto;
+            }
+            @include mobile(){
+                gap: 5px;
+            }
+            @include pc-middle(){
+                margin: 0 auto;
+            }
             .search_form{
                 form{
                     background-color: #fff;
@@ -100,6 +130,8 @@ body {
                         width: 270px;
                        text-indent: 8px;
                        border-radius: 40px;
+                       font-family: "Dancing Script", cursive;
+                       font-size: 18px;
                        &::placeholder{
                         color: #9d7101;
                        }
@@ -114,29 +146,39 @@ body {
                         background-color: #fab604;
                         padding: 10px 30px;
                         border-radius: 40px;
-                        font-size: 15px;
+                        font-size: 17px;
                         font-weight: 700;
                         display: flex;
                         align-items: center;
                         gap: 5px;
                         border: none;
+                        font-family: "Dancing Script", cursive;
+                       font-size: 22px;
+                       color: white;
                         cursor: pointer;
                         transition: 0.3s all;
                         &:hover{
                             box-shadow: 0 0 10px rgba(0,0,0, 0.27);
+                        }
+                        @include mobile-middle(){
+                            padding: 5px 15px;
                         }
                     }
                 }
             }
             .likes{
                 font-size: 25px;
-                background: #fab604;
+                background: #f4c74bc7;
+               
                 padding: 7px;
                 border-radius: 8px;
                 position: relative;
+                cursor: pointer;
+                color: #fff;
                 
                 &:hover > .list{
                     visibility: visible;
+                    opacity: 1;
                 } 
                 .list{
                     position: absolute;
@@ -144,17 +186,120 @@ body {
                     right: -170px;
                     margin-right: 150px;
                     background-image: linear-gradient(90deg, #ef9f498f 0%, #c27100 100%);
+                    opacity: 0;
                     visibility: hidden;
                   padding: 10px;
+                  transition: all 0.5s;
+                  z-index: 999999;
+                  border-radius: 20px;
+                  cursor: pointer;
+                  @include ninety(){
+                    width: 150px;
+                    right: -250px;
+                  }
+                  @include ipad(){
+                    right: -170px;
+                 
+                  }
                   a{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    border-bottom: 1px solid black;
+                    padding: 6px;
                     img{
                         width: 50px;
                         height: 50px;
                         border-radius: 50px;
+                        @include ninety(){
+                            width: 35px;
+                            height: 35px;
+                        }
+                    }
+                    p{
+                        font-size: 15px;
+                       white-space: nowrap;
+                       text-overflow: ellipsis;
+                       overflow: hidden;
+                       color: white;
                     }
                   }
                 }
             }
         }
     }
+}
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    flex-grow: 1;
+    // border: 1px solid red;
+    @include pc-middle(){
+        grid-template-columns: 1fr;
+    }
+    .results {
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        justify-content: start;
+        .result-link{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f3b42cd1;
+            padding: 5px 10px;
+            border-radius: 15px;
+            width: 100%;
+            @include pc-middle(){
+                width: 100%;
+            }
+            @include mobile(){
+                width: 350px;
+            }
+            &:hover{
+                background-color: #fab604;
+                cursor: pointer;
+                transform: translateY(-2px);
+                transition: 0.4s all;
+            }
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                @include mobile(){
+                    width: 30px;
+                    height: 30px;
+                }
+                
+            }
+            .data{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0 auto;
+                @include mobile(){
+                    font-size: 13px;
+                }
+                h4 {
+                    font-family: "Dancing Script", cursive;
+                    color: #fff;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    max-width: 200px;
+                    transition: 0.4s ;
+                    &:hover{
+                        color: rgb(85, 45, 0);
+                    }
+                }
+                p{
+                    font-family: "Dancing Script", cursive;
+                    color: white;
+                }
+            }
+        }
+    }
+    
 }
