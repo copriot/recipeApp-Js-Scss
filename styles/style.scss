@@ -44,7 +44,7 @@ body {
 }
 
 .container {
-    background: rgb(146,145,145);
+    background: rgb(146,145,145, 0.4);
     max-width: 90rem;
     min-height: 70vh;
     margin: 4vw auto;
@@ -175,6 +175,9 @@ body {
                 position: relative;
                 cursor: pointer;
                 color: #fff;
+                &:hover{
+                    background: #f4c74b;
+                }
                 
                 &:hover > .list{
                     visibility: visible;
@@ -238,7 +241,8 @@ main {
         grid-template-columns: 1fr;
     }
     .results {
-        margin: 10px;
+      //  margin: 10px;
+      padding: 10px;
         display: flex;
         flex-direction: column;
         gap: 15px;
@@ -297,6 +301,213 @@ main {
                 p{
                     font-family: "Dancing Script", cursive;
                     color: white;
+                }
+            }
+        }
+    }
+    .recipe{
+        background-color: rgba(190,190,190, 0.5);
+        figure{
+            height: 300px;
+            position: relative;
+            &::before{
+                content:"";
+                display: block;
+                background-image: linear-gradient(90deg, #fab604 0%, #c28b00 100%);
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0.4;
+                width: 100%;
+                height: 100%;
+            }
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            h1 {
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%, 20%) skewY(-6deg);
+                color: whitesmoke;
+                font-weight: 800;
+                background-image: linear-gradient(90deg, #fe333f 0%, #f0cf27);
+                font-family: "Dancing Script", cursive;
+                padding: 12px 30px;
+                border-radius: 8px;
+                white-space: nowrap;
+                text-shadow: 0 0 10px rgb(202, 202, 202);
+                letter-spacing: 3px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 400px;
+            }
+            .like-area {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                padding: 20px;
+                i{
+                    font-size: 25px;
+                    transition: all 0.3s;
+                    padding: 5px;
+                    color: #f4d09c;
+                    &:hover {
+                        background: #fe333f;
+                        cursor: pointer;
+                        color: #fff;
+                        border-radius: 10px;
+
+                    }
+                }
+            }
+        }
+        .ingredients {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+            margin-top: 35px;
+            width: 100%;
+            @include pc-middle {
+                align-items: center;
+                padding: 20px;
+            }
+            ul{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                list-style-type: none;
+                gap: 20px;
+                @include mobile() {
+                    grid-template-columns: 1fr;
+                }
+                li {
+                    display: flex;
+                    gap: 10px;
+                    i {
+                        color: #fe333f;
+                    }
+                    p {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-width: 200px;
+                        color: whitesmoke;
+                    }
+                }
+            }
+            button {
+                display: flex;
+                //align-items: center;
+                justify-content: center;
+                gap: 25px;
+                padding: 15px;
+                margin: 50px auto;
+                width: 100%;
+                background-color: #fe3341bd;
+                border: none;
+                outline: none;
+                font-size: 20px;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s;
+                &:hover {
+                    scale: 0.95;
+                }
+                span {
+                    font-family: "Dancing Script", cursive;
+                    color: #fff;
+                    letter-spacing: 3px;
+                    font-weight: 900;
+
+                }
+                i {
+                    color: #fff;
+                }
+            }
+        }
+        .directions {
+            text-align: center;
+            padding-bottom: 40px;
+            h2 {
+                transform: skewY(-3deg);
+                font-weight: 600;
+                color: #fe333f;
+                font-family: "Dancing Script", cursive;
+                letter-spacing: 3px;
+                font-size: 27px;
+                text-shadow: 0 0 10px #fe333f;
+            }
+            p {
+                padding: 50px;
+                font-weight: 400;
+                color: whitesmoke;
+                span {
+                    color: #fe333f;
+                }
+            }
+            a {
+                border: 1px solid #fe333f;
+                padding: 10px 30px;
+                border-radius: 30px;
+                font-weight: 600;
+                color: whitesmoke;
+                transition: 0.3s;
+                &:hover{
+                    background-color: #fe3341e8;
+                }
+            }
+        }
+    }
+    .shopping {
+        h2 {
+            text-align: center;
+            font-family: "Dancing Script", cursive;
+            padding: 5px 2px;
+            margin: 30px;
+            font-size: 30px;
+            color: whitesmoke;
+            letter-spacing: 1px;
+        }
+        .button-area {
+            display: flex;
+            justify-content: end;
+            margin: 5px;
+            padding: 5px;
+            button{
+                display: flex;
+                background-color: rgba(220, 20, 60, 0.747);
+                border: none;
+                padding: 7px;
+                color: white;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: 0.3s all;
+                gap: 5px;
+                &:hover{
+                    scale: 0.96;
+                    background-color: crimson;
+                }
+            }
+            
+        }
+        ul {
+            li {
+                list-style: none;
+                padding: 5px;
+                border-bottom: 2px solid #c23d00;
+                font-family: "Dancing Script", cursive;
+                font-weight: 700;
+                color: white;
+                letter-spacing: 2px;
+                i {
+
+                    cursor: pointer;
+                    font-size: 20px;
                 }
             }
         }
