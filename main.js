@@ -1,6 +1,12 @@
 import { Search } from "./js/api.js";
 import { elements } from "./js/helpers.js";
+import { Recipe } from "./js/recipe.js";
 import { renderLoader, renderResult } from "./js/ui.js";
+
+
+const recipe = new Recipe();
+
+
 
 //console.log(elements.resultsList);
 
@@ -31,4 +37,32 @@ async function handleSubmit(e){
         }
     }
 };
-elements.form.addEventListener("submit",handleSubmit)
+elements.form.addEventListener("submit",handleSubmit);
+//tarif detaylarını alma
+const controlRecipe = async () => {
+// console.log("değişti");
+// console.log(window);
+const id = document.location.hash.replace("#", "");
+//console.log(id);
+
+
+if(id){
+    //tarif bilgilerini al
+   try {await recipe.getRecipe(id);
+
+    //ekrana tarif arayüzünü aktarma
+recipe.renderRecipe(recipe.info);
+
+   }
+
+   catch(error){
+    console.log(error);
+   };
+}
+};
+
+//tekrar eden işlemlerde döngü kullanabiliriz.
+// window.addEventListener("hashchange", controlRecipe);
+// window.addEventListener("load", controlRecipe);
+
+["hashchange","load"].forEach((event)=> window.addEventListener(event, controlRecipe));
