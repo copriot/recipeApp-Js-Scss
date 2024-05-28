@@ -5,8 +5,9 @@ export const elements = {
     recipeArea: document.querySelector(".recipe"),
     likeList:document.querySelector(".list"),
     basketList:document.querySelector(".shopping ul"),
-    clearBtn: document.querySelector("#clear"),
+    clearBtn:document.getElementById("clear"),
 };
+//console.log(elements.clearBtn);
 //localStorage veri ekleme/güncelleme
 export const setLocalStorage = (key, data) => {
     //verileri stringe çevirme
@@ -22,12 +23,14 @@ export const getFromLocal = (key) => {
 
   
 };
-// sepetin doluluk oranına göre sepeti temizle butonunu göster
-// export const controlBtn = (basket) => {
-//     // console.log(basket.length);
-//     if (basket.length > 0) {
-//       elements.clearBtn.style.display = "flex";
-//     } else {
-//       elements.clearBtn.style.display = "none";
-//     }
-//   };
+//sepetin doluluk oranına göre sepeti temizle butonunu göster
+ export const controlBtn = (basket) => {
+    // console.log(basket);
+    if(basket.length >0){
+        elements.clearBtn.style.display = "flex"
+    }
+    else{
+elements.clearBtn.style.display = "none"
+    }
+    
+ };

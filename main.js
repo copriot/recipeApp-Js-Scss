@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
 import { v4 } from "https://jspm.dev/uuid";
 import { Search } from "./js/api.js";
-import { elements, getFromLocal, setLocalStorage } from "./js/helpers.js";
+import { controlBtn, elements, getFromLocal, setLocalStorage } from "./js/helpers.js";
 import { Recipe } from "./js/recipe.js";
 import { renderBasketItems, renderLoader, renderResult } from "./js/ui.js";
 
@@ -76,7 +76,10 @@ recipe.renderRecipe(recipe.info);
 let basket = getFromLocal("basket") || [];
 
 document.addEventListener("DOMContentLoaded", ()=> {
-console.log("sayfa yeniden yüklendi");
+renderBasketItems(basket);
+
+//sepette eleman varsa butonu göster
+controlBtn(basket)
 });
 
 //tarif alanındaki tıklamlarda çalışır
@@ -96,12 +99,47 @@ recipe.ingredients.forEach((title)=> {
 setLocalStorage("basket", basket);
 //ekrana sepet elemaanlarını basma
 renderBasketItems(basket);
+//sepeti temizleme butonunu göster
+controlBtn(basket);
+
 }
 if(e.target.id === "like-btn"){
 recipe.controlLike();
 }
 };
 
-
+//sepete ekle butonuna ve likelamaya tıklanma olayını izleme
 elements.recipeArea.addEventListener("click", handleClick);
 console.log(uuidv4());
+
+elements.basketList.addEventListener("click", deleteItem);
+
+//sepetten eleman kaldırma
+function deleteItem (e){
+    if(e.target.id === "delete-item"){
+        console.log("delete-item id e tıkladın");
+        const parent = e.target.parentElement;
+        console.log(parent);
+        //seçilen ürünü diziden kaldırmak için id e erişme
+        basket =basket.filter((i)=>i.id !== parent.dataset.id);
+        console.log(basket);
+        //local storageyi güncelleme
+        setLocalStorage("basket", basket);
+        parent.remove();
+        //temizle butonunu tekrar kontrol ettik
+        controlBtn(basket);
+    }
+};
+//temizleme butonuna tıklanma olayını izle
+elements.clearBtn.addEventListener("click",handleClear)
+
+function handleClear(){
+    const response = confirm("Are you sure you want to delete the basket ?");
+    if(response) {
+        setLocalStorage("basket", null);
+        basket = [];
+        controlBtn(basket);
+        elements.basketList.innerHTML = "";
+        console.log(basket);
+    }
+}
