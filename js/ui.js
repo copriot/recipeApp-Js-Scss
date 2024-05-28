@@ -28,3 +28,16 @@ const loader = ` <div class="loader">
 //loader'ı bize gelen html elemanının içerisine gönderme
 parent.insertAdjacentHTML("afterbegin", loader);
 };
+
+export const renderBasketItems = (items) => {
+    const markup = items
+      .map(
+        (item) => `  
+      <li data-id=${item.id}>
+        <i class="bi bi-x" id="delete-item"></i>
+        <span>${item.title}</span>
+      </li>`
+      )
+      .join("");
+    elements.basketList.innerHTML = markup;
+  };

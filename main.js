@@ -1,7 +1,11 @@
+import { v4 as uuidv4 } from 'https://jspm.dev/uuid';
+import { v4 } from "https://jspm.dev/uuid";
 import { Search } from "./js/api.js";
-import { elements } from "./js/helpers.js";
+import { elements, getFromLocal, setLocalStorage } from "./js/helpers.js";
 import { Recipe } from "./js/recipe.js";
-import { renderLoader, renderResult } from "./js/ui.js";
+import { renderBasketItems, renderLoader, renderResult } from "./js/ui.js";
+
+
 
 
 const recipe = new Recipe();
@@ -66,3 +70,38 @@ recipe.renderRecipe(recipe.info);
 // window.addEventListener("load", controlRecipe);
 
 ["hashchange","load"].forEach((event)=> window.addEventListener(event, controlRecipe));
+
+
+
+let basket = getFromLocal("basket") || [];
+
+document.addEventListener("DOMContentLoaded", ()=> {
+console.log("sayfa yeniden yüklendi");
+});
+
+//tarif alanındaki tıklamlarda çalışır
+const handleClick = (e) => {
+//console.log(e.target.id);
+if(e.target.id === "add-to-basket"){
+    //tarifler dizisini dön
+recipe.ingredients.forEach((title)=> {
+ const newItem = {
+    id:v4 (),
+    title,
+ };//tarifleri basket dizisine ekleme
+ basket.push(newItem)
+});
+
+//sepeti locale kaydetme
+setLocalStorage("basket", basket);
+//ekrana sepet elemaanlarını basma
+renderBasketItems(basket);
+}
+if(e.target.id === "like-btn"){
+recipe.controlLike();
+}
+};
+
+
+elements.recipeArea.addEventListener("click", handleClick);
+console.log(uuidv4());
